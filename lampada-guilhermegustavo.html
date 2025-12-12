@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gustavo e Guilherme Light Bulb</title>
+
+    <style>
+        :root{
+            --antonio: #ff0033;
+            --sergio: #1109f7;
+            --amorim: #00f7ff;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-image: linear-gradient(to top, var(--amorim), var(--sergio));
+            background-attachment: fixed;
+        }
+
+        header, section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button{
+            width: 80px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Lâmpada</h1>
+    </header>
+
+    <section>
+        <div>
+            <img src="./lamp_off.jpeg" alt="lampada off" id="lamp">
+        </div>
+
+        <div>
+            <button id="turnOn">Ligar</button>
+            <button id="turnOff">Desligar</button>
+        </div>
+    </section>
+
+    <script>
+        const turnOn = document.getElementById('turnOn');
+        const turnOff = document.getElementById('turnOff');
+        const lamp = document.getElementById('lamp');
+
+        function isLampBroken(){ 
+            return lamp.src.includes('broke');
+        }
+
+        function lampOn(){
+            if (!isLampBroken()) {
+                lamp.src = './lamp_on.jpeg';
+            }
+        }
+
+        function lampOff(){
+            if (!isLampBroken()) {
+                lamp.src = './lamp_off.jpeg';
+            }
+        }
+
+        function lampBroken(){
+            lamp.src = './lamp_broke.jpeg';
+        }
+
+        turnOn.addEventListener('click', lampOn);
+        turnOff.addEventListener('click', lampOff);
+        lamp.addEventListener('mouseover', lampOn);
+        lamp.addEventListener('mouseleave', lampOff);
+        lamp.addEventListener('dblclick', lampBroken);
+    </script>
+
+</body>
+</html>
